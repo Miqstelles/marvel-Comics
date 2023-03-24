@@ -1,7 +1,11 @@
 import { Carousel } from "../../components/Caroulsel/Carousel";
+import { Comics } from "../../components/Sections/Comics/Comics";
 
 export function Home() {
     return (
-        <Carousel />
+        <div>
+            <Carousel />
+            <Comics />
+        </div>
     )
 }
