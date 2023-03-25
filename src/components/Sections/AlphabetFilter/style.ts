@@ -13,6 +13,10 @@ justify-content: center;
 align-items: center;
 height: 47px;
 font-size: 20px;
-color: #fff;
 gap: 6px;
+`
+
+export const Letter = styled.a`
+text-decoration: none;
+color: #fff;
 `
