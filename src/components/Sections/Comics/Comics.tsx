@@ -3,8 +3,9 @@ import md5 from "md5";
 import { useEffect, useState } from "react";
 import { Alphabet } from "../AlphabetFilter/Alphabet";
 import { ComicCard, ComicsDiv, ComicTitle } from "./styles";
+import { Link } from 'react-router-dom';
 
-interface ResponseData {
+export interface ResponseData {
     id: string;
     title: string;
     description: string;
@@ -13,6 +14,7 @@ interface ResponseData {
         extension: 'portrait_xlarge.jpg';
     }
 }
+
 const publicKey = '82b123107b3f347612d1c147238d3ef7'
 const privateKey = '437ceec8c6a4281606011b114656643fa8ba8e5f'
 
@@ -40,14 +42,14 @@ export function Comics() {
                     {comics.map(comic => {
                         return (
                             <ComicCard>
-                                <img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} width={140} height={200} />
+                                <Link title={comic.title} to={`/ComicCart/${comic.id}`}  ><img src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} width={140} height={200} /></Link>
                                 <ComicTitle>{comic.title}</ComicTitle>
                             </ComicCard>
                         )
                     })}
                 </ComicsDiv>
             </div>
-        </div>
+        </div >
     )
 
 }
