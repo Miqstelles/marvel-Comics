@@ -47,7 +47,7 @@ export function Comic() {
 
     useEffect(() => {
         axios
-            .get(`http://gateway.marvel.com/v1/public/comics/${id}?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+            .get(`https://gateway.marvel.com/v1/public/comics/${id}?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
             .then(response => {
                 setComic(response.data.data.results)
             })

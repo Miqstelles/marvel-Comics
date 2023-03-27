@@ -33,7 +33,7 @@ export function Comics() {
 
     useEffect(() => {
         axios
-            .get(`http://gateway.marvel.com/v1/public/comics?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
+            .get(`https://gateway.marvel.com/v1/public/comics?ts=${timeStamp}&apikey=${publicKey}&hash=${hash}`)
             .then(response => {
                 setComic(response.data.data.results)
             })
