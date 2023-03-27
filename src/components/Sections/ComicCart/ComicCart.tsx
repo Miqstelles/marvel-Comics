@@ -10,26 +10,6 @@ import { TrashSimple } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { BtnContinuarComprando, BtnRemoverTudo, ValorTotal } from './style'
 
-interface ComicData {
-    id: string;
-    title: string;
-    description: string;
-    thumbnail: {
-        path: string;
-        extension: 'standard_large.jpg';
-    },
-    prices: {
-        type: string;
-        price: number;
-    }[],
-    creators: {
-        available: Number;
-        items: {
-            name: string;
-            role: string;
-        }[],
-    }
-}
 
 const getComicById = async (id: string) => {
     const publicKey = '7c05f6b7e459ef60c26039c3085eeea9';
@@ -48,7 +28,30 @@ const getComicById = async (id: string) => {
     return response.data.data.results[0];
 };
 
-export function ComicCart(props: ComicData) {
+export function ComicCart() {
+
+    interface ComicData {
+        id: string;
+        title: string;
+        description: string;
+        thumbnail: {
+            path: string;
+            extension: 'standard_large.jpg';
+        },
+        prices: {
+            type: string;
+            price: number;
+        }[],
+        creators: {
+            available: Number;
+            items: {
+                name: string;
+                role: string;
+            }[],
+        }
+    }
+
+
     const [comics, setComics] = useState<ComicData[]>([]);
     const items = useSelector(useCart);
     const comicIds = items.map(item => item.id);
