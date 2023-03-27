@@ -50,14 +50,10 @@ export function ComicCart() {
             }[],
         }
     }
-
-
     const [comics, setComics] = useState<ComicData[]>([]);
     const items = useSelector(useCart);
     const comicIds = items.map(item => item.id);
     const [isLoaded, setIsLoaded] = useState(false);
-
-
 
     const fetchComicsData = async () => {
         const comics: ComicData[] = [];
