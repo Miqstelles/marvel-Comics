@@ -14,6 +14,10 @@ grid-gap: 48px;
 export const ComicCard = styled.div`
 width: 140px;
 height: 250px;
+&:hover{
+    transform: scale(1.1);
+    transition: 0.4s;
+}
 @media only screen and (min-width: 760px){
     width: 260px;
     height: 480px;
