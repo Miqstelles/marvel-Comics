@@ -9,7 +9,7 @@ import { BtnFinalizar, Cart, CartComics, ComicCreator, ComicImg, ComicPrice, Com
 import { TrashSimple } from '@phosphor-icons/react';
 import { Link } from 'react-router-dom';
 import { BtnContinuarComprando, BtnRemoverTudo, ValorTotal } from './style'
-
+import { motion } from "framer-motion"
 
 const getComicById = async (id: string) => {
     const publicKey = '7c05f6b7e459ef60c26039c3085eeea9';
@@ -95,35 +95,41 @@ export function ComicCart() {
     return (
         <div>
             <Navbar />
-            <Title>Carrinho de Compras</Title>
-            <Cart>
-                {comics.map(comic => (
-                    <div key={comic.id}>
-                        <CartComics>
-                            <ComicImg src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} title={comic.title} alt={comic.title} />
-                            <div>
-                                <ComicTitle>{comic.title}</ComicTitle>
-                                <ComicCreator>ESCRITOR: {comic.creators.available != 0 ? `${comic.creators.items[0].name}` : 'N/A'}</ComicCreator>
+            <motion.div
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.5 }}
+            >
+                <Title>Carrinho de Compras</Title>
+                <Cart>
+                    {comics.map(comic => (
+                        <motion.div key={comic.id}
+                            initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.4 }}
+                        >
+                            <CartComics>
+                                <ComicImg src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} title={comic.title} alt={comic.title} />
                                 <div>
-                                    <RemoveComics>
-                                        <Link to={`/Cart`} onClick={() => handleRemoveFromCart(String(comic.id))}><TrashSimple size={32} /></Link>
-                                        <ComicPrice>{comic.prices[0].price}</ComicPrice>
-                                    </RemoveComics>
+                                    <ComicTitle>{comic.title}</ComicTitle>
+                                    <ComicCreator>ESCRITOR: {comic.creators.available != 0 ? `${comic.creators.items[0].name}` : 'N/A'}</ComicCreator>
+                                    <div>
+                                        <RemoveComics>
+                                            <Link to={`/Cart`} onClick={() => handleRemoveFromCart(String(comic.id))}><TrashSimple size={32} /></Link>
+                                            <ComicPrice>{comic.prices[0].price}</ComicPrice>
+                                        </RemoveComics>
+                                    </div>
                                 </div>
-                            </div>
-                        </CartComics>
+                            </CartComics>
+                        </motion.div>
+                    ))}
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
+                        <Link to={`/Home`}><BtnContinuarComprando>CONTINUAR COMPRANDO</BtnContinuarComprando></Link>
+                        <BtnRemoverTudo onClick={removerTodasComics}>REMOVER TUDO</BtnRemoverTudo>
                     </div>
-                ))}
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '20px' }}>
-                    <Link to={`/Home`}><BtnContinuarComprando>CONTINUAR COMPRANDO</BtnContinuarComprando></Link>
-                    <BtnRemoverTudo onClick={removerTodasComics}>REMOVER TUDO</BtnRemoverTudo>
-                </div>
-                <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                    <ValorTotal>TOTAL: ${valortotal}</ValorTotal>
-                    <BtnFinalizar>FINALIZAR</BtnFinalizar>
-                </div>
+                    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+                        <ValorTotal>TOTAL: ${valortotal}</ValorTotal>
+                        <BtnFinalizar>FINALIZAR</BtnFinalizar>
+                    </div>
 
-            </Cart>
+                </Cart>
+            </motion.div>
         </div>
     );
 }

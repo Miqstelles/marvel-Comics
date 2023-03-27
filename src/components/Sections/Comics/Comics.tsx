@@ -3,6 +3,7 @@ import md5 from "md5";
 import { useEffect, useState } from "react";
 import { ActivateLetter, AlphabetFilter, AlphabetLetters, ButtonClear, ButtonLetter, ComicCard, ComicImg, ComicsDiv, ComicTitle, PageButton, PageButtons } from "./styles";
 import { Link } from 'react-router-dom';
+import { motion } from "framer-motion"
 
 export interface ResponseData {
     id: string;
@@ -65,20 +66,26 @@ export function Comics() {
 
     return (
         <div>
-            <AlphabetFilter>
-                <AlphabetLetters>
-                    {Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)).map(
-                        letter => (
-                            <ButtonLetter title={letter} key={letter} onClick={() => handleLetterClick(letter)}>
-                                {letter}
-                            </ButtonLetter>
-                        )
-                    )}
+            <motion.div
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.8 }}
+            >
+                <AlphabetFilter>
+                    <AlphabetLetters>
+                        {Array.from({ length: 26 }, (_, i) => String.fromCharCode(65 + i)).map(
+                            letter => (
+                                <ButtonLetter title={letter} key={letter} onClick={() => handleLetterClick(letter)}>
+                                    {letter}
+                                </ButtonLetter>
+                            )
+                        )}
 
-                </AlphabetLetters>
-            </AlphabetFilter>
+                    </AlphabetLetters>
+                </AlphabetFilter>
+            </motion.div>
             <ActivateLetter>{activeLetter} {activeLetter ? <ButtonClear onClick={() => setActiveLetter("")}>LIMPAR</ButtonClear> : null}</ActivateLetter>
-            <div style={{ display: "flex", justifyContent: 'center' }}>
+            <motion.div
+                initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.5 }}
+                style={{ display: "flex", justifyContent: 'center' }}>
                 <ComicsDiv>
                     {currentItems.map(comic => {
                         return (
@@ -91,7 +98,7 @@ export function Comics() {
                         )
                     })}
                 </ComicsDiv>
-            </div>
+            </motion.div>
             <PageButtons>
                 {pageNumbers.map(number => (
                     <PageButton

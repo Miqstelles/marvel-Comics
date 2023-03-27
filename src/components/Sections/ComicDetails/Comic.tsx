@@ -9,6 +9,7 @@ import { ComicDetails } from "./style";
 import { ShoppingCartSimple } from "@phosphor-icons/react";
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, useCart } from '../../../Redux/sliceCart';
+import { motion } from "framer-motion"
 
 interface ResponseData {
     id: string;
@@ -63,7 +64,9 @@ export function Comic() {
             <Navbar />
             {comics.map(comic => {
                 return (
-                    <div key={comic.id}>
+                    <motion.div key={comic.id}
+                        initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1 }}
+                    >
                         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                             <ComicDetails>
                                 <ComicImg src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} />
@@ -78,7 +81,7 @@ export function Comic() {
                                 </ComicDesc>
                             </ComicDetails>
                         </div>
-                    </div>
+                    </motion.div>
                 )
             })}
         </div>
