@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Route, Routes, Navigate, redirect } from "react-router-dom";
-import { RedirectFunction } from 'react-router-dom';
-import { ComicCart } from "../Pages/Cart/Comic/ComicCart";
+import { Cart } from "../Pages/Cart/Cart";
+import { ComicDetails } from "../Pages/ComicsDetails/Comic/ComicDetails";
 import { Home } from "../Pages/Home/Home";
 
 const AppRoutes = () => {
@@ -9,7 +9,8 @@ const AppRoutes = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/Home" element={<Home />} />
-                <Route path="/ComicCart/:id" element={<ComicCart />} />
+                <Route path="/ComicDetails/:id" element={<ComicDetails />} />
+                <Route path="/Cart" element={<Cart />} />
             </Routes>
         </Router>
     )
