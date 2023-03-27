@@ -7,7 +7,7 @@ export function Navbar() {
     return (
         <Navb>
             <Ul>
-                <li style={{ marginTop: '5px' }}><ShoppingCartSimple size={32} color={'#fff'} /></li>
+                <Link to={`/Cart`}><li style={{ marginTop: '5px' }}><ShoppingCartSimple size={32} color={'#fff'} /></li></Link>
                 <Link to={`/Home`}> <li><Img src={logo} alt="Marvel Logo" /></li></Link>
                 <li style={{ marginTop: '5px' }}><MagnifyingGlass size={32} color={'#fff'} /></li>
             </Ul>
