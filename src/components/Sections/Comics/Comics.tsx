@@ -86,7 +86,7 @@ export function Comics() {
                     </AlphabetLetters>
                 </AlphabetFilter>
             </motion.div>
-            <ActivateLetter>{activeLetter} {activeLetter ? <ButtonClear onClick={() => setActiveLetter("")}>LIMPAR</ButtonClear> : null}</ActivateLetter>
+            <ActivateLetter>{activeLetter} {activeLetter ? <ButtonClear onClick={() => { setActiveLetter(""); setCurrentPage(1); }}>LIMPAR</ButtonClear> : null}</ActivateLetter>
             <motion.div
                 initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ duration: 0.8, delay: 1.5 }}
                 style={{ display: "flex", justifyContent: 'center' }}>
