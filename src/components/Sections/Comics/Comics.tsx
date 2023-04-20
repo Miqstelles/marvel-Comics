@@ -1,7 +1,7 @@
 import axios from "axios";
 import md5 from "md5";
 import { useEffect, useState } from "react";
-import { ActivateLetter, AlphabetFilter, AlphabetLetters, ButtonClear, ButtonLetter, ComicCard, ComicImg, ComicsDiv, ComicTitle, PageButton, PageButtons } from "./styles";
+import { ActivateLetter, AlphabetFilter, AlphabetLetters, ButtonClear, ButtonLetter, ComicCard, ComicImg, ComicPrice, ComicsDiv, ComicTitle, PageButton, PageButtons } from "./styles";
 import { Link } from 'react-router-dom';
 import { motion } from "framer-motion"
 
@@ -12,7 +12,11 @@ export interface ResponseData {
     thumbnail: {
         path: string;
         extension: 'portrait_xlarge.jpg';
-    }
+    },
+    prices: {
+        type: string;
+        price: number;
+    }[]
 }
 
 const publicKey = '7c05f6b7e459ef60c26039c3085eeea9'
@@ -93,6 +97,7 @@ export function Comics() {
                                 <ComicCard>
                                     <Link title={comic.title} to={`/ComicDetails/${comic.id}`}  ><ComicImg src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`} alt={comic.title} /></Link>
                                     <ComicTitle>{comic.title}</ComicTitle>
+                                    <ComicPrice>R$: {comic.prices[0].price}</ComicPrice>
                                 </ComicCard>
                             </div>
                         )

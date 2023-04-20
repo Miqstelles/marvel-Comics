@@ -36,7 +36,14 @@ height: 200px;
 export const ComicTitle = styled.h1`
 font-size: 20px;
 @media only screen and (min-width: 760px){
-   font-size: 32px;
+   font-size: 24px;
+}
+`
+
+export const ComicPrice = styled.p`
+font-size: 18px;
+@media only screen and (min-width: 760px){
+   font-size: 22px;
 }
 `
 
